@@ -1,0 +1,28 @@
+
+
+body {
+    background: rgb(253, 249, 249);
+}
+
+.grid-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.checkbox-large {
+    position: relative;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    padding-right: 5px;
+}
+
+.divider {
+    display: flex;
+    justify-content: space-between;
+}
+
+.text-right {
+    text-align: right;
+}
