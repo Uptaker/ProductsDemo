@@ -1,6 +1,7 @@
 <hr>
 <footer class="text-center">
-    <p>Scandiweb Test Assignment</p>
+    <b>Scandiweb Test Assignment</b>
+    <p>by Markus Tammeoja</p>
 </footer>
 
 </div>

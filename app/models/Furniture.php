@@ -25,11 +25,6 @@ class Furniture extends Product
         return $result;
     }
 
-    public function setInfo()
-    {
-        $this->info = 'Dimensions: HxLxW';
-    }
-
     function formatMeasurements($dimensions)
     {
         return $dimensions['height'] . 'x' . $dimensions['width'] . 'x' . $dimensions['length'];
@@ -59,14 +54,4 @@ class Furniture extends Product
             return false;
         }
     }
-
-    // public function getAttributes()
-    // {
-    //     $data = [
-    //         'attributes' => $this->attributes,
-    //         'measurement' => $this->measurement,
-    //         'info' => $this->info
-    //     ];
-    //     return $data;
-    // }
 }

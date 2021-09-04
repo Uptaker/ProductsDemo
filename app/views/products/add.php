@@ -1,10 +1,9 @@
 <?php require(APPROOT . '/views/inc/header.php') ?>
 
 <div class="row mb-3">
-    <h3 class="col"><?php echo $data['title'] ?></h3>
+    <h3 class="col"><i class="fas fa-info-circle me-3"></i><?php echo $data['title'] ?></h3>
     <div class="col text-end">
         <button type="submit" form="product_form" value="Save" class="btn btn-primary"><i class="fas fa-check me-2"></i>Save</button>
-        <a href="<?php echo URLROOT ?>/products/add" class="btn btn-secondary">Debug Reload</a>
         <a href="<?php echo URLROOT ?>/products" class="btn btn-white"><i class="fas fa-times me-2"></i>Cancel</a>
     </div>
 </div>
@@ -23,7 +22,7 @@
         </div>
         <div class="form-group mb-3">
             <label for="price">Price: <sup>*</sup></label>
-            <input placeholder="$" type="number" name="price" id="price" class="form-control mb-1 <?php echo (!empty($data['price_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['price']; ?>">
+            <input placeholder="$" type="number" name="price" step="any" id="price" class="form-control mb-1 <?php echo (!empty($data['price_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['price']; ?>">
             <span class="invalid-feedback"><?php echo $data['price_err']; ?></span>
         </div>
         <div id="typeContainer">

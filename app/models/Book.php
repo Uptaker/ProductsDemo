@@ -33,14 +33,4 @@ class Book extends Product
         }
         return $data;
     }
-
-    // public function getAttributes()
-    // {
-    //     $data = [
-    //         'attributes' => $this->attributes,
-    //         'measurement' => $this->measurement,
-    //         'info' => $this->info
-    //     ];
-    //     return $data;
-    // }
 }

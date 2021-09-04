@@ -39,14 +39,4 @@ class Dvd extends Product
     {
         $this->info = 'Dimensions: HxLxW';
     }
-
-    // public function getAttributes()
-    // {
-    //     $data = [
-    //         'attributes' => $this->attributes,
-    //         'measurement' => $this->measurement,
-    //         'info' => $this->info
-    //     ];
-    //     return $data;
-    // }
 }

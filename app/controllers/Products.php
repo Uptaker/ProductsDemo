@@ -85,9 +85,6 @@ class Products extends Controller
                 }
             }
 
-            $data['debug'] = $errors;
-
-
             // Make sure errors are empty
             if (empty($data['sku_err']) && empty($data['price_err']) && empty($data['name_err']) && empty($data['type_name_err']) && empty($data['attributes_err'])) {
 
@@ -104,7 +101,6 @@ class Products extends Controller
                 }
             } else {
                 // Load view with errors
-                echo var_dump($data);
                 $this->view('products/add', $data);
             }
         } else {

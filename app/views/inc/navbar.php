@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="https://github.com/Uptaker/ProductsDemo">GitHub</a>
+                    <a class="nav-link" aria-current="page" href="https://github.com/Uptaker/ProductsDemo">GitHub<i class="fab fa-github ms-2"></i></a>
                 </li>
                 </li>
             </ul>

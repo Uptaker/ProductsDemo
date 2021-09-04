@@ -2,10 +2,9 @@
 
 <div class="container">
     <div class="row mb-3">
-        <h3 class="col"><?php echo $data['title'] ?></h3>
+        <h3 class="col"><i class="fas fa-info-circle me-3"></i><?php echo $data['title'] ?></h3>
         <div class="col text-end">
             <a href="<?php echo URLROOT ?>/products/add" class="btn btn-primary"><i class="fas fa-plus me-2"></i>Add</a>
-            <!-- <a href="<?php echo URLROOT ?>/products/remove" class="btn btn-danger"><i class="fas fa-trash me-2"></i>Mass Delete</a> -->
             <button type="submit" form="del" value="Mass Delete" class="btn btn-danger"><i class="fas fa-trash me-2"></i>Mass Delete</button>
             <form action="<?php echo URLROOT; ?>/products/delete" method="post" id="del">
         </div>
