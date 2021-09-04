@@ -19,7 +19,7 @@ class Products extends Controller
         $this->view('products/index', $data);
     }
 
-    public function add()
+    public function addproduct()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -101,7 +101,7 @@ class Products extends Controller
                 }
             } else {
                 // Load view with errors
-                $this->view('products/add', $data);
+                $this->view('products/addproduct', $data);
             }
         } else {
 
@@ -122,7 +122,7 @@ class Products extends Controller
                 'attributes_err' => ''
             ];
 
-            $this->view('products/add', $data);
+            $this->view('products/addproduct', $data);
         }
     }
 

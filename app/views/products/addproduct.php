@@ -9,7 +9,7 @@
 </div>
 <div class="card card-body bg-light mt-5">
     <h4>Create a product listing with this form</h4>
-    <form action="<?php echo URLROOT; ?>/products/add" method="post" id="product_form">
+    <form action="<?php echo URLROOT; ?>/products/addproduct" method="post" id="product_form">
         <div class="form-group mt-5 mb-3">
             <label for="sku">SKU: <sup>*</sup></label>
             <input type="text" name="sku" id="sku" class="form-control mb-1 <?php echo (!empty($data['sku_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['sku']; ?>">
