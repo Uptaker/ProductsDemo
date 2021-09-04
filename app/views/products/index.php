@@ -5,19 +5,24 @@
         <h3 class="col"><?php echo $data['title'] ?></h3>
         <div class="col text-end">
             <a href="<?php echo URLROOT ?>/products/add" class="btn btn-primary"><i class="fas fa-plus me-2"></i>Add</a>
-            <a href="<?php echo URLROOT ?>/products/remove" class="btn btn-danger"><i class="fas fa-trash me-2"></i>Mass Delete</a>
+            <!-- <a href="<?php echo URLROOT ?>/products/remove" class="btn btn-danger"><i class="fas fa-trash me-2"></i>Mass Delete</a> -->
+            <button type="submit" form="del" value="Mass Delete" class="btn btn-danger"><i class="fas fa-trash me-2"></i>Mass Delete</button>
+            <form action="<?php echo URLROOT; ?>/products/delete" method="post" id="del">
         </div>
     </div>
+    <?php flash('product_add_success') ?>
+    <?php flash('product_delete_success') ?>
+    <?php flash('product_delete_fail') ?>
     <div class="grid-wrapper">
         <?php foreach ($data['products'] as $product) : ?>
             <div class="card">
                 <div class="card-body">
-                    <div class="divider">
-                        <div>
-                            <input class="checkbox-large" type="checkbox" value="">
-                        </div>
-                        <div class="text-right">
+                    <div>
+                        <div class="divider mb-2">
+                            <input class="checkbox-large" type="checkbox" name="checkbox[]" value="<?php echo $product->productId ?>">
                             <p class="card-text"><?php echo ucwords($product->type_name); ?></p>
+                        </div>
+                        <div class="text-center">
                             <h5 class="card-title"><?php echo $product->name; ?></h5>
                         </div>
                     </div>

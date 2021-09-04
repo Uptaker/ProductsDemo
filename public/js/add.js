@@ -36,7 +36,7 @@ class TypeSwitcher {
                 html += `
                     <div class="form-group">
                     <label for="${value}">${value[0].toUpperCase() + value.slice(1)} (in ${obj.measurement}): <sup>*</sup></label>
-                    <input type="text" name="${value}" id="${value}" class="form-control mb-3" value="">
+                    <input type="text" name="attributes[${value}]" id="${value}" class="form-control mb-3" value="">
                     <span id="err_${value}"; ?></span>
                     </div>
                 `;
@@ -62,14 +62,6 @@ class TypeSwitcher {
 
             const list = document.querySelector('#productType');
 
-            // Create default selected disabled option
-            let option = document.createElement("option");
-            option.value = 'none';
-            option.text = 'Select Type';
-            option.selected = true;
-            option.disabled = true;
-            list.appendChild(option);
-
             // Loop to create the options
             for (let i = 0; i < types.length; i++) {
                 let option = document.createElement("option");
@@ -77,7 +69,9 @@ class TypeSwitcher {
                 option.text = types[i]['type_name'][0].toUpperCase() + types[i]['type_name'].slice(1);
                 list.appendChild(option);
             }
-            console.log(this.productType.value)
+
+            // Preselect a default type
+            this.switchType();
         });
     }
 }

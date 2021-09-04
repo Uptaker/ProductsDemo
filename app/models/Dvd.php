@@ -3,8 +3,8 @@
 class Dvd extends Product
 {
     private $table = 'dvd';
-    private $measurement = 'MB';
-    private $info = 'Please, provide size';
+    protected $measurement = 'MB';
+    protected $info = 'Please, provide size';
     protected $attributes = ['size'];
 
 
@@ -40,21 +40,13 @@ class Dvd extends Product
         $this->info = 'Dimensions: HxLxW';
     }
 
-    public function addData()
-    {
-    }
-
-    public function deleteData()
-    {
-    }
-
-    public function getAttributes()
-    {
-        $data = [
-            'attributes' => $this->attributes,
-            'measurement' => $this->measurement,
-            'info' => $this->info
-        ];
-        return $data;
-    }
+    // public function getAttributes()
+    // {
+    //     $data = [
+    //         'attributes' => $this->attributes,
+    //         'measurement' => $this->measurement,
+    //         'info' => $this->info
+    //     ];
+    //     return $data;
+    // }
 }

@@ -3,8 +3,8 @@
 class Book extends Product
 {
     private $table = 'book';
-    private $measurement = 'KG';
-    private $info = 'Please, provide weight';
+    protected $measurement = 'KG';
+    protected $info = 'Please, provide weight';
     protected $attributes = ['weight'];
 
 
@@ -34,18 +34,13 @@ class Book extends Product
         return $data;
     }
 
-    public function setInfo()
-    {
-        $this->info = 'Dimensions: HxLxW';
-    }
-
-    public function getAttributes()
-    {
-        $data = [
-            'attributes' => $this->attributes,
-            'measurement' => $this->measurement,
-            'info' => $this->info
-        ];
-        return $data;
-    }
+    // public function getAttributes()
+    // {
+    //     $data = [
+    //         'attributes' => $this->attributes,
+    //         'measurement' => $this->measurement,
+    //         'info' => $this->info
+    //     ];
+    //     return $data;
+    // }
 }

@@ -22,14 +22,20 @@ class Products extends Controller
     public function add()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            $attributes[] = $_POST['attributes'];
             $data = [
                 'title' => 'Add Product',
 
-                'sku' => '',
-                'price' => '',
-                'name' => '',
-                'type_name' => '',
-                'attributes' => [],
+                'sku' => trim($_POST['sku']),
+                'price' => trim($_POST['price']),
+                'name' => trim($_POST['name']),
+                'type_name' => trim($_POST['productType']),
+
+                // Intelliphense was giving me issues here for whatever reason, had to resort to this terribleness for now
+                'attributes' => $attributes[0], // ["weight" => 123] or ["width" => #, "length" => #, "height" => #]
 
                 'sku_err' => '',
                 'price_err' => '',
@@ -37,11 +43,13 @@ class Products extends Controller
                 'type_err' => '',
                 'attributes_err' => ''
             ];
-            // Validate Email
+
+
+            // Validate SKU
             if (empty($data['sku'])) {
-                $data['email_err'] = 'Please enter SKU';
+                $data['sku_err'] = 'Please enter SKU';
             } else {
-                // Check email
+                // Check sku
                 if ($this->productModel->findProductBySku($data['sku'])) {
                     $data['sku_err'] = 'A product with the associated sku already exists';
                 }
@@ -49,39 +57,54 @@ class Products extends Controller
 
             // Validate Name
             if (empty($data['name'])) {
-                $data['name_err'] = 'Please enter name';
+                $data['name_err'] = 'Please the product enter name';
+            } elseif (is_numeric($data['name'])) {
+                $data['name_err'] = 'Name cannot be a number';
             }
 
-            // Validate Password
-            if (empty($data['password'])) {
-                $data['password_err'] = 'Please enter your password';
-            } elseif (strlen($data['password']) < 8) {
-                $data['password_err'] = 'Password must be at least 8 characters';
+            // Validate Price
+            if (empty($data['price'])) {
+                $data['price_err'] = 'Please enter the price';
+            } elseif (!is_numeric($data['price'])) {
+                $data['price_err'] = 'Price must be a numeric value';
             }
 
-            // Validate Confirm Password
-            if (empty($data['confirm_password'])) {
-                $data['confirm_password_err'] = 'Please confirm your password';
+            // Validate selected type & attribute
+            if ($data['type_name'] == 'none') {
+                $data['type_err'] = 'You must select a type!';
             } else {
-                if ($data['password'] != $data['confirm_password']) {
-                    $data['confirm_password_err'] = 'Passwords do not match';
+                $errors = array();
+                foreach ($attributes[0] as $key => $value) {
+                    if (empty($value)) {
+                        array_push($errors, $key);
+                        $data['attributes_err'] = 'Entry ' . implode(' ,', $errors) . ' cannot be empty';
+                    } elseif (!is_numeric($value)) {
+                        array_push($errors, $key);
+                        $data['attributes_err'] = 'Entry ' . implode(' ,', $errors) . ' must be numeric';
+                    }
                 }
             }
 
+            $data['debug'] = $errors;
+
+
             // Make sure errors are empty
             if (empty($data['sku_err']) && empty($data['price_err']) && empty($data['name_err']) && empty($data['type_name_err']) && empty($data['attributes_err'])) {
+
                 // Validated
 
-
-                // Register user
-                // if ($this->userModel->register($data)) {
-                flash('product_add_success', "Product: " . $data['name'] . " successfully added.");
-                //     redirect('products/index');
-                // } else {
-                //     die("Something went wrong!");
-                // }
+                $class = ucwords($data['type_name']);
+                $this->typeModel = $this->model($class);
+                // Add Product
+                if ($this->typeModel->addData($data)) {
+                    flash('product_add_success', "Product: " . $data['name'] . " successfully added");
+                    redirect('products/index');
+                } else {
+                    die("Something went wrong!");
+                }
             } else {
                 // Load view with errors
+                echo var_dump($data);
                 $this->view('products/add', $data);
             }
         } else {
@@ -123,6 +146,35 @@ class Products extends Controller
             $this->typeModel = $this->model(ucwords($type));
             $values = $this->typeModel->getAttributes();
             echo json_encode($values);
+        } else {
+            redirect('products/index');
+        }
+    }
+
+    public function delete()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+            // Validation
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            if (sizeof($_POST['checkbox']) > 0) {
+                $ids = [];
+                foreach ($_POST['checkbox'] as $id) {
+                    array_push($ids, trim($id));
+                }
+
+                // Delete Product(s)
+                if ($this->productModel->deleteById($ids)) {
+                    flash('product_delete_success', "Selected products deleted successfully");
+                    redirect('products/index');
+                } else {
+                    die("Something went wrong!");
+                }
+            } else {
+                flash('product_delete_fail', "You must select at least one item to delete anything", "alert alert-danger");
+                redirect('products/index');
+            }
         } else {
             redirect('products/index');
         }
