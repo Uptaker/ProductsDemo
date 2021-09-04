@@ -1,0 +1,49 @@
+$main_white: #fff;
+$secondary_white: rgb(253, 249, 249);
+$main_gray: rgb(228, 227, 227);
+$secondary_gray:rgb(241, 241, 241);
+
+body {
+    background: $secondary_white;
+}
+
+.grid-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.delete-checkbox {
+    position: relative;
+    height: 25px;
+    width: 25px;
+    background-color: $main_white;
+    padding-right: 5px;
+}
+
+.divider {
+    display: flex;
+    justify-content: space-between;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.btn-white {
+    background-color: $main_white;
+    border-color: $main_gray;
+
+    &:hover {
+        background-color: $secondary_gray;
+    }
+}
+
+
+.show {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
