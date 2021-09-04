@@ -26,3 +26,11 @@ body {
 .text-right {
     text-align: right;
 }
+
+.btn-white {
+    background-color: #fff;
+    border-color: rgb(233, 232, 232);
+}
+.btn-white:hover {
+    background-color: rgb(241, 241, 241);
+}
