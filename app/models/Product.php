@@ -100,7 +100,6 @@ class Product
     public function deleteById($ids)
     {
         // Apparently PDO doesn't support prepared statements with arrays? :(
-        $questionMarks = str_repeat('?,', count($ids) - 1) . '?';
 
         // Turn into real ints
         $ids = array_map(function ($num) {

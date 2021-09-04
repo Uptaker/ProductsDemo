@@ -5,7 +5,7 @@
         <h3 class="col"><i class="fas fa-info-circle me-3"></i><?php echo $data['title'] ?></h3>
         <div class="col text-end">
             <a href="<?php echo URLROOT ?>/products/add" class="btn btn-primary"><i class="fas fa-plus me-2"></i>Add</a>
-            <button type="submit" form="del" value="Mass Delete" class="btn btn-danger"><i class="fas fa-trash me-2"></i>Mass Delete</button>
+            <button id="delete-product-btn" type="submit" form="del" value="Mass Delete" class="btn btn-danger"><i class="fas fa-trash me-2"></i>Mass Delete</button>
             <form action="<?php echo URLROOT; ?>/products/delete" method="post" id="del">
         </div>
     </div>
@@ -18,7 +18,7 @@
                 <div class="card-body">
                     <div>
                         <div class="divider mb-2">
-                            <input class="checkbox-large" type="checkbox" name="checkbox[]" value="<?php echo $product->productId ?>">
+                            <input class="delete-checkbox" type="checkbox" name="checkbox[]" value="<?php echo $product->productId ?>">
                             <p class="card-text"><?php echo ucwords($product->type_name); ?></p>
                         </div>
                         <div class="text-center">
