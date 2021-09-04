@@ -7,7 +7,7 @@ A demo web app containing a page that lists products and ability to add/delete t
 - Delete Product(s)
 
 ## Installation
-- Download and install the XAMPP https://www.apachefriends.org/download.html
+- Download and install XAMPP https://www.apachefriends.org/download.html
 - Import the contents into a folder in XAMPP/htdocs/<your_folder>
 - Import the .sql found within the root folder into the database either via terminal or PhpMyAdmin http://localhost/phpmyadmin
 - Turn on Apache and MySQL in XAMPP. The app is live at http://localhost/<your_folder>
