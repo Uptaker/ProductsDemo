@@ -1,5 +1,5 @@
 # Products Demo
-A demo web app containing a page that lists products and ability to add/delete them
+A demo web app written in pure OOP PHP containing a page that lists products and ability to add/delete them.
 
 ## Functionality
 - View all Products
